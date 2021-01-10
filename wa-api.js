@@ -54,4 +54,9 @@ app.get('/', (req, res) => {
 
 });
 
+app.post('/hi', (req, res) => {
+  res.send('{"replies":[  {  "message":"🤖:hi '+req.query.sender+'"     }  ]}');
+
+});
+
 app.listen(port, () => console.log(`responding on port ${port}!`));
