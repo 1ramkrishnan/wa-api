@@ -55,7 +55,10 @@ app.get('/', (req, res) => {
 });
 
 app.post('/hi', (req, res) => {
+  console.log(request.body.query.sender);
   res.send('{"replies":[  {  "message":"🤖:hi '+request.body.query.sender+'"     }  ]}');
+}).on("error", (err) => {
+  console.log("Error: " + err.message);
 
 });
 
