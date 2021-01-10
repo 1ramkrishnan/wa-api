@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express()
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 let quotes=[{"_id":"wIfNy-oDtr","tags":["friendship"],"content":"Friendship needs no words - it is solitude delivered from the anguish of loneliness.","author":"Dag Hammarskjöld","length":84}];
 
 app.use(cors());
