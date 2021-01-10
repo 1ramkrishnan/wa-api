@@ -29,20 +29,13 @@ app.post('/quotes', (req, res) => {
       // The whole response has been received. Print out the result.
       resp.on('end', () => {
         console.log(JSON.parse(data).content+JSON.parse(data).author);
-        res.send('{"replies":[  {  "message":"🤖:'+JSON.parse(data).content+'- '+JSON.parse(data).author+'"     }  ]}');
+        res.send('{"replies":[  {  "message":"🤖: '+JSON.parse(data).content+'- '+JSON.parse(data).author+'"     }  ]}');
 
       });
     
     }).on("error", (err) => {
       console.log("Error: " + err.message);
     });
-
-
-
-
-    //end
-
-
 });
 
 app.get('/quotes', (req, res) => {
@@ -56,10 +49,33 @@ app.get('/', (req, res) => {
 
 app.post('/hi', (req, res) => {
   console.log(req.body.query.sender);
-  res.send('{"replies":[  {  "message":"🤖:hi '+req.body.query.sender+'"     }  ]}');
+  res.send('{"replies":[  {  "message":"🤖: hi '+req.body.query.sender+'"     }  ]}');
 }).on("error", (err) => {
   console.log("Error: " + err.message);
 
 });
+app.post('/advice', (req, res) => {
+ 
 
+  const https = require('https');
+
+  https.get('https://api.adviceslip.com/advice', (resp) => {
+    let data = '';
+  
+    // A chunk of data has been received.
+    resp.on('data', (chunk) => {
+      data += chunk;
+    });
+  
+    // The whole response has been received. Print out the result.
+    resp.on('end', () => {
+      console.log(JSON.parse(data).slip);
+      res.send('{"replies":[  {  "message":"🤖: '+JSON.parse(data).slip.advice+'"     }  ]}');
+
+    });
+  
+  }).on("error", (err) => {
+    console.log("Error: " + err.message);
+  });
+});
 app.listen(port, () => console.log(`responding on port ${port}!`));
