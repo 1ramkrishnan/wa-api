@@ -49,6 +49,9 @@ app.get('/quotes', (req, res) => {
     res.json(quotes);
 
 });
+app.get('/', (req, res) => {
+  res.send("wa-api for Whatsapp Chatbot experimental project by rk thevar.");
 
+});
 
 app.listen(port, () => console.log(`responding on port ${port}!`));
