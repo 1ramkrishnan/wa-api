@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/hi', (req, res) => {
-  res.send('{"replies":[  {  "message":"🤖:hi '+req.query.sender+'"     }  ]}');
+  res.send('{"replies":[  {  "message":"🤖:hi '+JSON.parse(req.body).sender+'"     }  ]}');
 
 });
 
