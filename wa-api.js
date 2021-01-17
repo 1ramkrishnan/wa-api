@@ -110,12 +110,13 @@ app.post('/insult', (req, res) => {
 
 
 app.post('/ping', (req, res) => {
- 
+
   console.log(req.body.query.message);  
+  if(req.body.query.message.length<8)
+  return res.send('{"replies":[  {  "message":"🤖: Not valid url i guess.     }  ]}');
   const urls=req.body.query.message;
   console.log(urls);
-  if(req.body.query.message.length>7)
-  {
+ 
   const https = require('https');
   https.get('https://steakovercooked.com/api/ping/?host='+urls.replace("@ping ",""), (resp) => {
     let data = '';
@@ -142,7 +143,7 @@ app.post('/ping', (req, res) => {
   
   }).on("error", (err) => {
     console.log("Error: " + err.message);
-  });}
+  });
 });
 
 
