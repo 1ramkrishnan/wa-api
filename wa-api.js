@@ -128,7 +128,7 @@ app.post('/ping', (req, res) => {
       res.send('{"replies":[  {  "message":"🤖: '+JSON.parse(data)+'"     }  ]}');
 
     });}
-    else if(data.length==4)
+    else if(JSON.parse(data)=="null")
     { res.send('{"replies":[  {  "message":"🤖: No Response i guess."     }  ]}');}
     else
     {
