@@ -121,11 +121,17 @@ app.post('/ping', (req, res) => {
     });
   
     // The whole response has been received. Print out the result.
+    if(data.length>0)
+    {
     resp.on('end', () => {
       console.log(JSON.parse(data).slip);
       res.send('{"replies":[  {  "message":"🤖: '+JSON.parse(data)+'"     }  ]}');
 
-    });
+    });}
+    else
+    {
+      res.send('{"replies":[  {  "message":"🤖: Hmmm"     }  ]}');
+    }
   
   }).on("error", (err) => {
     console.log("Error: " + err.message);
