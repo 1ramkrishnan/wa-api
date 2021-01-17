@@ -110,7 +110,7 @@ app.post('/insult', (req, res) => {
 
 
 app.post('/ping', (req, res) => {
-
+try{
   console.log(req.body.query.message);  
   if(req.body.query.message.length<8)
   return res.send('{"replies":[  {  "message":"🤖: Not valid url i guess."     }  ]}');
@@ -144,6 +144,12 @@ app.post('/ping', (req, res) => {
   }).on("error", (err) => {
     console.log("Error: " + err.message);
   });
+}
+catch (e) {
+  res.send('{"replies":[  {  "message":"🤖: Hmmm! something wrong"     }  ]}');
+  console.log(e);
+ 
+}
 });
 
 
