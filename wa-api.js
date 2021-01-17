@@ -111,9 +111,8 @@ app.post('/insult', (req, res) => {
 
 app.post('/ping', (req, res) => {
  
-console.log(req.body.query.message);  
+  console.log(req.body.query.message);  
   const https = require('https');
-
   https.get('https://steakovercooked.com/api/ping/?host='+req.body.query.message, (resp) => {
     let data = '';
   
@@ -133,7 +132,7 @@ console.log(req.body.query.message);
     
     else
     {
-      res.send('{"replies":[  {  "message":"🤖: Hmmm"     }  ]}');
+      res.send('{"replies":[  {  "message":"🤖: Hmmm! No response i guess"     }  ]}');
     }
     });
   
