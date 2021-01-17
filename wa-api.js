@@ -128,11 +128,9 @@ app.post('/ping', (req, res) => {
       res.send('{"replies":[  {  "message":"🤖: '+JSON.parse(data)+'"     }  ]}');
 
     });}
-    else if(JSON.parse(data)=="null")
-    { res.send('{"replies":[  {  "message":"🤖: No Response i guess."     }  ]}');}
     else
     {
-      res.send('{"replies":[  {  "message":"🤖: Hmmm"     }  ]}');
+      res.send('{"replies":[  {  "message":"🤖: Hmmm No Response i guess!"     }  ]}');
     }
   
   }).on("error", (err) => {
