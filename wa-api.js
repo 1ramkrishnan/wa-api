@@ -106,4 +106,31 @@ app.post('/insult', (req, res) => {
 });
 
 
+
+app.post('/insult', (req, res) => {
+ 
+
+  const https = require('https');
+
+  https.get('https://evilinsult.com/generate_insult.php?lang=en&type=json', (resp) => {
+    let data = '';
+  
+    // A chunk of data has been received.
+    resp.on('data', (chunk) => {
+      data += chunk;
+    });
+  
+    // The whole response has been received. Print out the result.
+    resp.on('end', () => {
+      console.log(JSON.parse(data).insult);
+      res.send('{"replies":[  {  "message":"🤖: '+JSON.parse(data).insult+'"     }  ]}');
+
+    });
+  
+  }).on("error", (err) => {
+    console.log("Error: " + err.message);
+  });
+});
+
+
 app.listen(port, () => console.log(`responding on port ${port}!`));
