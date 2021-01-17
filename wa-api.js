@@ -112,8 +112,8 @@ app.post('/ping', (req, res) => {
  
 
   const https = require('https');
-
-
+console.log(req.body.query.message);
+console.log(req.body.query.message.replace('@ping ', ''));
   https.get('https://steakovercooked.com/api/ping/?host='+req.body.query.message.replace('@ping ', ''), (resp) => {
     let data = '';
   
@@ -123,7 +123,7 @@ app.post('/ping', (req, res) => {
     });
   
     // The whole response has been received. Print out the result.
-    if(data.length>0)
+    if(JSON.parse(data).length>1)
     {
     resp.on('end', () => {
       console.log(JSON.parse(data).slip);
