@@ -128,6 +128,8 @@ app.post('/ping', (req, res) => {
       res.send('{"replies":[  {  "message":"🤖: '+JSON.parse(data)+'"     }  ]}');
 
     });}
+    else if(data.length==4)
+    { res.send('{"replies":[  {  "message":"🤖: No Response i guess."     }  ]}');}
     else
     {
       res.send('{"replies":[  {  "message":"🤖: Hmmm"     }  ]}');
