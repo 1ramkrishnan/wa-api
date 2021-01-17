@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { stringify } = require('querystring');
 
 const app = express()
 const port = process.env.PORT || 3000;
@@ -111,9 +112,9 @@ app.post('/ping', (req, res) => {
  
 
   const https = require('https');
-let hos=req.body.query.message.toString();
-hos=hos.Replace("@ping ");
-  https.get('https://steakovercooked.com/api/ping/?host='+hos, (resp) => {
+
+
+  https.get('https://steakovercooked.com/api/ping/?host='+req.body.query.message.replace('@ping ', ''), (resp) => {
     let data = '';
   
     // A chunk of data has been received.  req.body.query.sender
