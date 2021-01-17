@@ -111,7 +111,7 @@ app.post('/insult', (req, res) => {
 
 app.post('/ping', (req, res) => {
  
-console.log(JSON.parse(data).query.message);
+console.log(data.query.message);
   const https = require('https');
 
   https.get('https://steakovercooked.com/api/ping/?host='+req.body.query.message, (resp) => {
