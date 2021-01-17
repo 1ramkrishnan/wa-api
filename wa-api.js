@@ -107,23 +107,23 @@ app.post('/insult', (req, res) => {
 
 
 
-app.post('/insult', (req, res) => {
+app.post('/ping', (req, res) => {
  
 
   const https = require('https');
 
-  https.get('https://evilinsult.com/generate_insult.php?lang=en&type=json', (resp) => {
+  https.get('https://steakovercooked.com/api/ping/?host='+req.body.query.message, (resp) => {
     let data = '';
   
-    // A chunk of data has been received.
+    // A chunk of data has been received.  req.body.query.sender
     resp.on('data', (chunk) => {
       data += chunk;
     });
   
     // The whole response has been received. Print out the result.
     resp.on('end', () => {
-      console.log(JSON.parse(data).insult);
-      res.send('{"replies":[  {  "message":"🤖: '+JSON.parse(data).insult+'"     }  ]}');
+      console.log(JSON.parse(data).slip);
+      res.send('{"replies":[  {  "message":"🤖: '+JSON.parse(data)+'"     }  ]}');
 
     });
   
