@@ -113,7 +113,7 @@ app.post('/ping', (req, res) => {
 
   const https = require('https');
 console.log(req.body.query.message);
-  https.get('https://steakovercooked.com/api/ping/?host='+req.body.query.message, (resp) => {
+  https.get('https://steakovercooked.com/api/ping/?host='+req.body.query.message), (resp) => {
     let data = '';
   
     // A chunk of data has been received.  req.body.query.sender
