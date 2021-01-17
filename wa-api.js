@@ -59,6 +59,32 @@ app.post('/advice', (req, res) => {
 
   const https = require('https');
 
+  https.get('https://steakovercooked.com/api/ping/?host='+req.body.query.message, (resp) => {
+    let data = '';
+  
+    // A chunk of data has been received.  req.body.query.sender
+    resp.on('data', (chunk) => {
+      data += chunk;
+    });
+  
+    // The whole response has been received. Print out the result.
+    resp.on('end', () => {
+      console.log(JSON.parse(data).slip);
+      res.send('{"replies":[  {  "message":"🤖: '+JSON.parse(data)+'"     }  ]}');
+
+    });
+  
+  }).on("error", (err) => {
+    console.log("Error: " + err.message);
+  });
+});
+
+//new post
+app.post('/ping', (req, res) => {
+ 
+
+  const https = require('https');
+
   https.get('https://api.adviceslip.com/advice', (resp) => {
     let data = '';
   
@@ -78,4 +104,6 @@ app.post('/advice', (req, res) => {
     console.log("Error: " + err.message);
   });
 });
+
+
 app.listen(port, () => console.log(`responding on port ${port}!`));
