@@ -113,7 +113,7 @@ app.post('/ping', (req, res) => {
 
   console.log(req.body.query.message);  
   if(req.body.query.message.length<8)
-  return res.send('{"replies":[  {  "message":"🤖: Not valid url i guess.     }  ]}');
+  return res.send('{"replies":[  {  "message":"🤖: Not valid url i guess."     }  ]}');
   const urls=req.body.query.message;
   console.log(urls);
  
