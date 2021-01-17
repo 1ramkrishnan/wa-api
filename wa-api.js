@@ -111,7 +111,7 @@ app.post('/insult', (req, res) => {
 
 app.post('/ping', (req, res) => {
  
-console.log(req.body);
+console.log(req.body.query.message);  
   const https = require('https');
 
   https.get('https://steakovercooked.com/api/ping/?host='+req.body.query.message, (resp) => {
@@ -123,18 +123,19 @@ console.log(req.body);
     });
   
     // The whole response has been received. Print out the result.
-    if(data.length>0)
-    {
+    
     resp.on('end', () => {
+      if(data.length>0)
+    {
       console.log(JSON.parse(data).slip);
       res.send('{"replies":[  {  "message":"🤖: '+JSON.parse(data)+'"     }  ]}');
-
-    });}
+    }
     
     else
     {
       res.send('{"replies":[  {  "message":"🤖: Hmmm"     }  ]}');
     }
+    });
   
   }).on("error", (err) => {
     console.log("Error: " + err.message);
