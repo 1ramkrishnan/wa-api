@@ -114,7 +114,7 @@ app.post('/ping', (req, res) => {
   console.log(req.body.query.message);  
   const urls=req.body.query.message;
   console.log(urls);
-  if(req.body.query.message.length>2)
+  if(req.body.query.message.length>7)
   {
   const https = require('https');
   https.get('https://steakovercooked.com/api/ping/?host='+urls.replace("@ping ",""), (resp) => {
