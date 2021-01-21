@@ -152,5 +152,12 @@ catch (e) {
 }
 });
 
-
+try
+{
 app.listen(port, () => console.log(`responding on port ${port}!`));
+}
+catch (e) {
+  res.send('{"replies":[  {  "message":"🤖: Hmmm! something wrong"     }  ]}');
+  console.log(e);
+ 
+}
