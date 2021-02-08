@@ -1,3 +1,15 @@
+var cluster = require('cluster');
+if (cluster.isMaster) {
+  cluster.fork();
+
+  cluster.on('exit', function(worker, code, signal) {
+    cluster.fork();
+  });
+}
+
+if (cluster.isWorker) {
+  // put your code here
+  
 const express = require('express')
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -161,3 +173,5 @@ catch (e) {
   console.log(e);
  
 }
+}
+
